@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invoice Builder</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">BillLab by EpochLab</p>
+        <h1>Invoice Builder</h1>
+      </div>
+      <div class="topbar-actions">
+        <button class="ghost-button" id="resetButton" type="button">Reset</button>
+        <button class="primary-button" id="printButton" type="button">Print / PDF</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="editor-panel" aria-label="Invoice editor">
+        <div class="panel-section">
+          <div class="section-heading">
+            <h2>Business</h2>
+          </div>
+          <label>
+            Business name
+            <input id="businessName" type="text" autocomplete="organization">
+          </label>
+          <label>
+            Website
+            <input id="businessWebsite" type="text" inputmode="url">
+          </label>
+          <label>
+            Logo
+            <input id="logoUpload" type="file" accept="image/*">
+          </label>
+          <div class="logo-tools">
+            <div class="logo-chip" id="logoChip">No logo uploaded</div>
+            <button class="small-button" id="removeLogoButton" type="button">Remove logo</button>
+          </div>
+          <label>
+            Brand color
+            <input id="brandColor" type="color">
+          </label>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-heading">
+            <h2>Client & receipt</h2>
+          </div>
+          <label>
+            Bill to
+            <input id="clientName" type="text" autocomplete="name">
+          </label>
+          <div class="split-fields">
+            <label>
+              Receipt #
+              <input id="receiptNumber" type="text">
+            </label>
+            <label>
+              Date
+              <input id="receiptDate" type="date">
+            </label>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-heading">
+            <h2>Description</h2>
+          </div>
+          <label>
+            Project summary
+            <textarea id="projectSummary" rows="2"></textarea>
+          </label>
+          <label>
+            Section title
+            <input id="breakdownTitle" type="text">
+          </label>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-heading">
+            <h2>Line items</h2>
+            <button class="small-button" id="addItemButton" type="button">Add item</button>
+          </div>
+          <div class="items-editor" id="itemsEditor"></div>
+        </div>
+
+        <div class="panel-section">
+          <div class="section-heading">
+            <h2>Footer</h2>
+          </div>
+          <label>
+            Included note
+            <textarea id="includedNote" rows="2"></textarea>
+          </label>
+          <label>
+            Terms
+            <textarea id="termsText" rows="2"></textarea>
+          </label>
+        </div>
+      </section>
+
+      <section class="preview-panel" aria-label="Invoice preview">
+        <article class="invoice-page" id="invoicePage">
+          <div class="brand-bar top"></div>
+
+          <div class="invoice-head">
+            <div class="business-block">
+              <h2 id="previewBusinessName"></h2>
+              <a id="previewBusinessWebsite" href="#" target="_blank" rel="noopener noreferrer"></a>
+            </div>
+            <img class="invoice-logo" id="previewLogo" alt="">
+          </div>
+
+          <div class="billing-grid">
+            <div>
+              <h3>BILL TO:</h3>
+              <p id="previewClientName"></p>
+            </div>
+            <dl class="receipt-meta">
+              <div>
+                <dt>RECEIPT #</dt>
+                <dd id="previewReceiptNumber"></dd>
+              </div>
+              <div>
+                <dt>RECEIPT DATE</dt>
+                <dd id="previewReceiptDate"></dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="rule"></div>
+
+          <div class="line-heading">
+            <h3>DESCRIPTION</h3>
+            <h3>AMOUNT</h3>
+          </div>
+
+          <div class="description-copy">
+            <p id="previewProjectSummary"></p>
+            <p id="previewBreakdownTitle"></p>
+          </div>
+
+          <div class="invoice-items" id="previewItems"></div>
+
+          <div class="total-row">
+            <strong>Receipt Total</strong>
+            <strong id="previewTotal"></strong>
+          </div>
+
+          <p class="included-note" id="previewIncludedNote"></p>
+
+          <div class="terms-block">
+            <h3>TERMS & CONDITIONS</h3>
+            <p id="previewTermsText"></p>
+          </div>
+
+          <div class="brand-bar bottom"></div>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
